@@ -1,4 +1,5 @@
 . ~/.zsh/aliases
+. ~/.private_aliases
 
 # changing directory to code project
 function c { cd ~/code/$1; }
@@ -8,8 +9,27 @@ function railsapp {
   template=$1
   appname=$2
   shift 2
-  rails $appname -m http://github.com/ryanb/rails-templates/raw/master/$template.rb $@
+  rails $appname -m http://github.com/chawei/rails-templates/raw/master/$template.rb $@
 }
 
 # misc
 alias reload='. ~/.bash_profile'
+
+# === extra aliases ===
+
+# rails
+alias ss="script/server"
+alias sc="script/console"
+alias migrate_all="rake db:migrate && rake db:migrate RAILS_ENV=test && rake db:migrate RAILS_ENV=cucumber"
+alias gem_install_all="sudo rake gems:install && sudo rake gems:install RAILS_ENV=test && sudo rake gems:install RAILS_ENV=cucumber"
+
+# mysql
+alias mysql=/usr/local/mysql/bin/mysql
+alias mysqladmin=/usr/local/mysql/bin/mysqladmin
+alias start_mysql="sudo /usr/local/mysql/bin/mysqld_safe"
+
+# tools
+alias wget='curl -C - -O'
+alias reload="exec /bin/bash --login"
+alias start_memcached="memcached -d -m 2048 -l 127.0.0.1 -p 11211"
+
